@@ -8,5 +8,5 @@ import lombok.Data;
 public class MemberInfo {
     private Long memberId;
     private String emailId;
-    private String password;
+
 }

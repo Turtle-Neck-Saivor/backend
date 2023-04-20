@@ -19,7 +19,6 @@ public class MemberMapper {
         return MemberInfo.builder()
                 .memberId(entity.getMemberid())
                 .emailId(entity.getEmailId())
-                .password(entity.getPassword())
                 .build();
     }
 }
