@@ -10,16 +10,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class MemberCreateRequest {
-
+public class MemberLogInRequest {
     @NotBlank
     private String emailId;
-
+    @NotBlank
     private String password;
-
-    private String nickname;
-
-    private String turtleNeckStatus;
-
-    private String turtleNeckPhoto;
 }
