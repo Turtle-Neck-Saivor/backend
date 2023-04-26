@@ -2,6 +2,7 @@ package com.tukorea.turtleneck.backend.domain.member.controller;
 
 import com.tukorea.turtleneck.backend.domain.member.dto.MemberInfo;
 import com.tukorea.turtleneck.backend.domain.member.dto.MemberCreateRequest;
+import com.tukorea.turtleneck.backend.domain.member.dto.MemberLogInRequest;
 import com.tukorea.turtleneck.backend.domain.member.dto.MemberMapper;
 import com.tukorea.turtleneck.backend.domain.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,12 @@ public class memberController {
     public ResponseEntity<MemberInfo> register(@Valid @RequestBody MemberCreateRequest request) {
 
         return ResponseEntity.status((HttpStatus.CREATED)).body(mapper.toInfo(service.register(request)));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Boolean> simpleLogin(@Valid @RequestBody MemberLogInRequest request) {
+
+        return ResponseEntity.status((HttpStatus.CREATED)).body(service.simpleLogin(request));
     }
 
 //    @GetMapping("/photo")photo
