@@ -1,6 +1,7 @@
 package com.tukorea.turtleneck.backend.domain.health.domain;
 
 
+import com.tukorea.turtleneck.backend.global.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HealthInfo {
+public class HealthInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
