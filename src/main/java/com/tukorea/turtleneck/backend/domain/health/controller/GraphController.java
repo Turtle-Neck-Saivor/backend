@@ -2,6 +2,7 @@ package com.tukorea.turtleneck.backend.domain.health.controller;
 
 
 import com.tukorea.turtleneck.backend.domain.health.dto.DayGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.WeekGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.service.GraphService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +24,14 @@ public class GraphController {
             @RequestParam String nickname,
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
     ) {
-        return ResponseEntity.ok().body(graphService.makeDayGraph(date, nickname));
+        return ResponseEntity.ok().body(graphService.getDayGraphInfo(date, nickname));
+    }
+
+    @GetMapping("/week")
+    public ResponseEntity<WeekGraphInfo> getWeekGraph(
+            @RequestParam String nickname,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        return ResponseEntity.ok().body(graphService.getWeekGraphInfo(date, nickname));
     }
 }
