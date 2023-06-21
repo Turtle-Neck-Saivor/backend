@@ -32,7 +32,7 @@ public class GraphService {
         MemberEntity memberEntity = memberRepository.findMemberEntityByNickname(nickname)
                 .orElseThrow(NotFoundMemberException::new);
         List<HealthInfo> infoList = healthRepository.findByDay(memberEntity, date);
-        long portion = tools.calculatePortion(infoList);
+        long portion = GraphTool.calculatePortion(infoList);
         return DayGraphInfo.builder().portion(portion).build();
     }
 
@@ -51,23 +51,15 @@ public class GraphService {
         }
         for(HealthInfo info : infoList) {
             switch (info.getDate().getDayOfWeek()) {
-                case MONDAY: tools.addHealthInfo(map, WeekOfDay.MONDAY, info); break;
-                case TUESDAY: tools.addHealthInfo(map, WeekOfDay.TUESDAY, info); break;
-                case WEDNESDAY: tools.addHealthInfo(map, WeekOfDay.WEDNESDAY, info); break;
-                case THURSDAY: tools.addHealthInfo(map, WeekOfDay.THURSDAY, info); break;
-                case FRIDAY: tools.addHealthInfo(map, WeekOfDay.FRIDAY, info); break;
-                case SATURDAY: tools.addHealthInfo(map, WeekOfDay.SATURDAY, info); break;
-                case SUNDAY: tools.addHealthInfo(map, WeekOfDay.SUNDAY, info); break;
+                case MONDAY: GraphTool.addHealthInfo(map, WeekOfDay.MONDAY, info); break;
+                case TUESDAY: GraphTool.addHealthInfo(map, WeekOfDay.TUESDAY, info); break;
+                case WEDNESDAY: GraphTool.addHealthInfo(map, WeekOfDay.WEDNESDAY, info); break;
+                case THURSDAY: GraphTool.addHealthInfo(map, WeekOfDay.THURSDAY, info); break;
+                case FRIDAY: GraphTool.addHealthInfo(map, WeekOfDay.FRIDAY, info); break;
+                case SATURDAY: GraphTool.addHealthInfo(map, WeekOfDay.SATURDAY, info); break;
+                case SUNDAY: GraphTool.addHealthInfo(map, WeekOfDay.SUNDAY, info); break;
             }
         }
-        return WeekGraphInfo.builder()
-                .mon(tools.calculatePortion(map.get(WeekOfDay.MONDAY)))
-                .tue(tools.calculatePortion(map.get(WeekOfDay.TUESDAY)))
-                .wed(tools.calculatePortion(map.get(WeekOfDay.WEDNESDAY)))
-                .thu(tools.calculatePortion(map.get(WeekOfDay.THURSDAY)))
-                .fri(tools.calculatePortion(map.get(WeekOfDay.FRIDAY)))
-                .sat(tools.calculatePortion(map.get(WeekOfDay.SATURDAY)))
-                .sun(tools.calculatePortion(map.get(WeekOfDay.SUNDAY)))
-                .build();
+        return new WeekGraphInfo(map);
     }
 }
