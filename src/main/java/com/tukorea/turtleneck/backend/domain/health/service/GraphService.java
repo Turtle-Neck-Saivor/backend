@@ -4,6 +4,8 @@ package com.tukorea.turtleneck.backend.domain.health.service;
 import com.tukorea.turtleneck.backend.domain.health.dao.HealthRepository;
 import com.tukorea.turtleneck.backend.domain.health.domain.HealthInfo;
 import com.tukorea.turtleneck.backend.domain.health.dto.DayGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.DayInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.MonthGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.dto.WeekGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.service.util.GraphTool;
 import com.tukorea.turtleneck.backend.domain.health.service.util.WeekOfDay;
@@ -61,5 +63,17 @@ public class GraphService {
             }
         }
         return new WeekGraphInfo(map);
+    }
+
+    public MonthGraphInfo getMonthGraphInfo(LocalDate date, String nickname){
+        MemberEntity memberEntity = memberRepository.findMemberEntityByNickname(nickname)
+                .orElseThrow(NotFoundMemberException::new);
+        List<DayInfo> infoList = new ArrayList<>();
+        for(int i = 1; i <= date.lengthOfMonth(); i++){
+            LocalDate nowDate = date.withDayOfMonth(i);
+            double average = GraphTool.calculateAverage(healthRepository.findByDay(memberEntity, nowDate));
+            infoList.add(DayInfo.builder().x(i).y((long) average).build());
+        }
+        return MonthGraphInfo.builder().infoList(infoList).build();
     }
 }
