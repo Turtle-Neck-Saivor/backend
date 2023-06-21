@@ -4,6 +4,7 @@ package com.tukorea.turtleneck.backend.domain.health.controller;
 import com.tukorea.turtleneck.backend.domain.health.dto.DayGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.dto.MonthGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.dto.WeekGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.YearGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.service.GraphService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,5 +43,13 @@ public class GraphController {
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
     ) {
         return ResponseEntity.ok().body(graphService.getMonthGraphInfo(date, nickname));
+    }
+
+    @GetMapping("/year")
+    public ResponseEntity<YearGraphInfo> getYearGraph(
+            @RequestParam String nickname,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        return ResponseEntity.ok().body(graphService.getYearGraphInfo(date, nickname));
     }
 }
