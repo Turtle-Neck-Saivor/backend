@@ -20,16 +20,12 @@ public class MemberEntity extends BaseEntity {
     @Column(name = "member_id")
     private Long memberid;
 
-    // nullabe = false로 해볼까?
-//    @NotBlank
     @Column(name = "email")
     private String emailId;
 
-//    @NotBlank
     @Column(name = "password")
     private String password;
 
-//    @NotBlank
     @Column(name = "nickname")
     private String nickname;
 

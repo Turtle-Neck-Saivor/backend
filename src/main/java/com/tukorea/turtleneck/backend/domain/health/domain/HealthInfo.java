@@ -1,6 +1,7 @@
 package com.tukorea.turtleneck.backend.domain.health.domain;
 
 
+import com.tukorea.turtleneck.backend.domain.member.domain.MemberEntity;
 import com.tukorea.turtleneck.backend.global.BaseEntity;
 import lombok.*;
 
@@ -15,19 +16,21 @@ public class HealthInfo extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nickname;
+
+    @ManyToOne
+    private MemberEntity memberEntity;
 
     private Long redCnt;
 
     private Long yellowCnt;
 
-    private Long totalCnt;
+    private Long greenCnt;
 
     @Builder
-    public HealthInfo(String nickname, Long redCnt, Long yellowCnt, Long totalCnt){
-        this.nickname = nickname;
+    public HealthInfo(MemberEntity memberEntity, Long redCnt, Long yellowCnt, Long greenCnt){
+        this.memberEntity = memberEntity;
         this.redCnt = redCnt;
         this.yellowCnt = yellowCnt;
-        this.totalCnt = totalCnt;
+        this.greenCnt = greenCnt;
     }
 }

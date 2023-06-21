@@ -11,4 +11,8 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long> {
     @Query("SELECT m FROM MemberEntity m WHERE m.emailId = :emailId " +
             "AND m.isActive = true")
     Optional<MemberEntity> findMemberEntityByEmailId(String emailId);
+
+    @Query("SELECT m FROM MemberEntity m WHERE m.nickname = :nickname " +
+            "AND m.isActive = true")
+    Optional<MemberEntity> findMemberEntityByNickname(String nickname);
 }
