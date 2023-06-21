@@ -6,6 +6,7 @@ import com.tukorea.turtleneck.backend.global.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "health")
@@ -26,11 +27,15 @@ public class HealthInfo extends BaseEntity {
 
     private Long greenCnt;
 
+    private LocalDate date;
+
     @Builder
-    public HealthInfo(MemberEntity memberEntity, Long redCnt, Long yellowCnt, Long greenCnt){
+    public HealthInfo(MemberEntity memberEntity, Long redCnt, Long yellowCnt, Long greenCnt, LocalDate date){
         this.memberEntity = memberEntity;
         this.redCnt = redCnt;
         this.yellowCnt = yellowCnt;
         this.greenCnt = greenCnt;
+        this.date = date;
+        this.isActive = true;
     }
 }

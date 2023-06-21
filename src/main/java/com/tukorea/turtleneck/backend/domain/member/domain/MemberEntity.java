@@ -42,6 +42,7 @@ public class MemberEntity extends BaseEntity {
         this.nickname = nickname;
         this.turtleNeckStatus = turtleNeckStatus;
         this.turtleNeckPhoto = turtleNeckPhoto;
+        this.isActive = true;
     }
 
     public void updateStatus(MemberStatus memberStatus) { this.turtleNeckStatus = turtleNeckStatus; }
