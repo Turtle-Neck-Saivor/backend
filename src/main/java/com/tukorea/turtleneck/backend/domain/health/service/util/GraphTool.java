@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class GraphTool {
 
-    public long calculatePortion(List<HealthInfo> infoList) {
+    public static long calculatePortion(List<HealthInfo> infoList) {
         if(infoList.isEmpty()){
             return 0;
         }
@@ -22,7 +22,7 @@ public class GraphTool {
         double portion =  ((redCnt + yellowCnt) / (redCnt + yellowCnt + greenCnt)) * 100;
         return (long) portion;
     }
-    public void addHealthInfo(Map<WeekOfDay, List<HealthInfo>> map, WeekOfDay day, HealthInfo healthInfo) {
+    public static void addHealthInfo(Map<WeekOfDay, List<HealthInfo>> map, WeekOfDay day, HealthInfo healthInfo) {
         List<HealthInfo> list = map.get(day);
         list.add(healthInfo);
     }
