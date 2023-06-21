@@ -42,4 +42,16 @@ public class GraphTool {
 //        double result = (1.0 / userData) * 100;
         return (long) userData;
     }
+
+    public static String calculateMonthlyStatus(double slope) {
+        System.out.println(slope);
+        if(slope <= 1){
+            return "Green";
+        } else if(slope > 1 && slope <= 2) {
+            return "Yellow";
+        } else if(slope > 2){
+            return "Red";
+        }
+        return "None";
+    }
 }
