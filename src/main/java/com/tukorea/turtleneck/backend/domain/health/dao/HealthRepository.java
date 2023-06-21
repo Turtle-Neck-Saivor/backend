@@ -27,4 +27,9 @@ public interface HealthRepository extends JpaRepository<HealthInfo, Long> {
             @Param("startOfWeek") LocalDate startOfWeek,
             @Param("endOfWeek") LocalDate endOfWeek
     );
+
+    @Query("SELECT info FROM HealthInfo info WHERE info.memberEntity = :member " +
+            "AND YEAR(info.date) = :year " +
+            "AND info.isActive = true")
+    List<HealthInfo> findByMemberEntityAndYear(@Param("member") MemberEntity member, @Param("year") int year);
 }
