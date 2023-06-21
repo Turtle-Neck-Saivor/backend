@@ -2,6 +2,7 @@ package com.tukorea.turtleneck.backend.domain.health.controller;
 
 
 import com.tukorea.turtleneck.backend.domain.health.dto.DayGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.MonthGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.dto.WeekGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.service.GraphService;
 import lombok.RequiredArgsConstructor;
@@ -33,5 +34,13 @@ public class GraphController {
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
     ) {
         return ResponseEntity.ok().body(graphService.getWeekGraphInfo(date, nickname));
+    }
+
+    @GetMapping("/month")
+    public ResponseEntity<MonthGraphInfo> getMonthGraph(
+            @RequestParam String nickname,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date
+    ) {
+        return ResponseEntity.ok().body(graphService.getMonthGraphInfo(date, nickname));
     }
 }
