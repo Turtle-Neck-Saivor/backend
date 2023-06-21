@@ -20,13 +20,13 @@ public class MemberEntity extends BaseEntity {
     @Column(name = "member_id")
     private Long memberid;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String emailId;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "nickname")
+    @Column(name = "nickname", unique = true)
     private String nickname;
 
     @Column(name = "turtleneck_status")
