@@ -22,6 +22,7 @@ public class HealthService {
                 .redCnt(request.getRedCnt())
                 .yellowCnt(request.getYellowCnt())
                 .greenCnt(request.getGreenCnt())
+                .date(request.getDate())
                 .build();
         return healthRepository.save(info);
     }
