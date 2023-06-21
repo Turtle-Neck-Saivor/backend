@@ -48,13 +48,27 @@ public class GraphService {
         }
         for(HealthInfo info : infoList) {
             switch (info.getDate().getDayOfWeek()) {
-                case MONDAY -> addHealthInfo(map, WeekOfDay.MONDAY, info);
-                case TUESDAY -> addHealthInfo(map, WeekOfDay.TUESDAY, info);
-                case WEDNESDAY -> addHealthInfo(map, WeekOfDay.WEDNESDAY, info);
-                case THURSDAY -> addHealthInfo(map, WeekOfDay.THURSDAY, info);
-                case FRIDAY -> addHealthInfo(map, WeekOfDay.FRIDAY, info);
-                case SATURDAY -> addHealthInfo(map, WeekOfDay.SATURDAY, info);
-                case SUNDAY -> addHealthInfo(map, WeekOfDay.SUNDAY, info);
+                case MONDAY:
+                    addHealthInfo(map, WeekOfDay.MONDAY, info);
+                    break;
+                case TUESDAY:
+                    addHealthInfo(map, WeekOfDay.TUESDAY, info);
+                    break;
+                case WEDNESDAY:
+                    addHealthInfo(map, WeekOfDay.WEDNESDAY, info);
+                    break;
+                case THURSDAY:
+                    addHealthInfo(map, WeekOfDay.THURSDAY, info);
+                    break;
+                case FRIDAY:
+                    addHealthInfo(map, WeekOfDay.FRIDAY, info);
+                    break;
+                case SATURDAY:
+                    addHealthInfo(map, WeekOfDay.SATURDAY, info);
+                    break;
+                case SUNDAY:
+                    addHealthInfo(map, WeekOfDay.SUNDAY, info);
+                    break;
             }
         }
         return WeekGraphInfo.builder()
