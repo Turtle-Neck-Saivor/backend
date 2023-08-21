@@ -1,19 +1,21 @@
 # 빌드 단계
 FROM gradle:7.6.1-jdk17-focal AS build
 
+ENV BACK_HOME=./backend
+
 ENV APP_HOME=/apps
 
 WORKDIR $APP_HOME
 
-COPY build.gradle settings.gradle gradlew $APP_HOME
+COPY $BACK_HOME/build.gradle settings.gradle gradlew $APP_HOME
 
-COPY gradle $APP_HOME/gradle
+COPY $BACK_HOME/gradle $APP_HOME/gradle
 
 RUN chmod +x gradlew
 
 RUN ./gradlew build || return 0
 
-COPY src $APP_HOME/src
+COPY $BACK_HOME/src $APP_HOME/src
 
 RUN ./gradlew clean build
 
@@ -25,7 +27,7 @@ ARG JAR_FILE_PATH=build/libs/backend-0.0.1-SNAPSHOT.jar
 
 WORKDIR $APP_HOME
 
-COPY --from=build $APP_HOME/$JAR_FILE_PATH $ARTIFACT_NAME
+COPY --from=$BACK_HOME/build $APP_HOME/$JAR_FILE_PATH $ARTIFACT_NAME
 
 EXPOSE 8080
 
