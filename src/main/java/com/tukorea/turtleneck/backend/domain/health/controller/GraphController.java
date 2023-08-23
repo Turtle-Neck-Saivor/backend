@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("api/v1/health/graphs")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://cowabugi.com", allowedHeaders = "*")
+@CrossOrigin(origins = "https://cowabugi.com", allowedHeaders = "*")
 public class GraphController {
 
     private final GraphService graphService;
