@@ -72,3 +72,4 @@ jobs:
             sudo docker-compose down
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/turtle_neck_savior_backend:latest
             sudo docker-compose up --build -d
+            sudo docker logout
