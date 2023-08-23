@@ -1,21 +1,21 @@
 # 빌드 단계
 FROM gradle:7.6.1-jdk17-focal AS build
 
-ENV BACKWEND_LOCAL_HOME=./backend
+ENV BACKEND_LOCAL_HOME=./backend
 
 ENV BACKEND_APP_HOME=/apps
 
 WORKDIR $BACKEND_APP_HOME
 
-COPY $BACKWEND_LOCAL_HOME/build.gradle $BACKWEND_LOCAL_HOME/settings.gradle $BACK_HOME/gradlew $BACKEND_APP_HOME
+COPY $BACKEND_LOCAL_HOME/build.gradle $BACKEND_LOCAL_HOME/settings.gradle $BACK_HOME/gradlew $BACKEND_APP_HOME
 
-COPY $BACKWEND_LOCAL_HOME/gradle $BACKEND_APP_HOME/gradle
+COPY $BACKEND_LOCAL_HOME/gradle $BACKEND_APP_HOME/gradle
 
 RUN chmod +x gradlew
 
 RUN ./gradlew build || return 0
 
-COPY $BACKWEND_LOCAL_HOME/src $BACKEND_APP_HOME/src
+COPY $BACKEND_LOCAL_HOME/src $BACKEND_APP_HOME/src
 
 RUN ./gradlew clean build
 
