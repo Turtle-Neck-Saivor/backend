@@ -1,0 +1,73 @@
+# github repository actions 페이지에 나타날 이름
+name: CI/CD using github actions & docker
+
+# event trigger
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  CI-CD:
+    runs-on: ubuntu-latest
+
+    steps:
+      # JDK setting - github actions에서 사용할 JDK 설정 (프로젝트나 AWS의 java 버전과 달라도 무방)
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      # gradle caching - 빌드 시간 향상
+      - name: Gradle Caching
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      # docker login
+      - name: Docker build
+        if: contains(github.ref, 'main')
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+      # .env생성 -> front kakaoAPI 경로 수정 필요
+      - name: Setting .env
+        run: |
+          echo "${{ secrets.ENV }}" >> .env 
+          cat .env
+
+      # docker build & push to production
+      - name: Docker build & push to prod
+        if: contains(github.ref, 'main')
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build --no-cache -t ${{ secrets.DOCKER_USERNAME }}/turtle_neck_savior_backend:latest .
+          docker push ${{ secrets.DOCKER_USERNAME }}/turtle_neck_savior_backend:latest
+
+      # deploy to production
+      - name: Deploy to prod
+        uses: appleboy/ssh-action@master
+        id: deploy-prod
+        if: contains(github.ref, 'main')
+        with:
+          host: ${{ secrets.HOST_PROD }} # EC2 퍼블릭 IPv4 DNS
+          username: ubuntu
+          key: ${{ secrets.PRIVATE_KEY }} # EC2 .pem 파일 내용
+          envs: GITHUB_SHA
+          script: |
+            sudo docker-compose down
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/turtle_neck_savior_backend:latest
+            sudo docker-compose up --build 
