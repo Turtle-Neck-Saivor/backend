@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/health")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:80", allowedHeaders = "*")
 public class HealthContorller {
     private final HealthService service;
     @PostMapping
-    public ResponseEntity<HealthInfo> record(@RequestBody RecordRequest request){
+    public ResponseEntity<HealthInfo> recordHealth(@RequestBody RecordRequest request){
         HealthInfo info = service.recordInfo(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(info);
     }
