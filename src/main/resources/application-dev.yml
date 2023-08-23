@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:mysql://db:3306/turtle-neck-savior-dev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
+    username: turtle
     password: 1234
 
 logging:
