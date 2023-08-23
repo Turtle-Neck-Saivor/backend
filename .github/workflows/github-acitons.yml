@@ -68,6 +68,7 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }} # EC2 .pem 파일 내용
           envs: GITHUB_SHA
           script: |
+            cd /home/ubuntu/turtle_neck_savior
             sudo docker-compose down
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/turtle_neck_savior_backend:latest
             sudo docker-compose up --build 
