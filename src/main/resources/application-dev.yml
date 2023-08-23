@@ -1,9 +1,11 @@
 spring:
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    show-sql: true
     hibernate:
       ddl-auto: create
+      show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   datasource:
     url: jdbc:mysql://db:3306/turtle-neck-savior-dev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -13,5 +15,5 @@ spring:
 
 logging:
   level:
-    org.hibernate.type: debug
-
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
