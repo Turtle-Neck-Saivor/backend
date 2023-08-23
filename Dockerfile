@@ -1,33 +1,33 @@
 # 빌드 단계
 FROM gradle:7.6.1-jdk17-focal AS build
 
-ENV BACK_HOME=./backend
+ENV BACKWEND_LOCAL_HOME=./backend
 
-ENV APP_HOME=/apps
+ENV BACKEND_APP_HOME=/apps
 
-WORKDIR $APP_HOME
+WORKDIR $BACKEND_APP_HOME
 
-COPY $BACK_HOME/build.gradle $BACK_HOME/settings.gradle $BACK_HOME/gradlew $APP_HOME
+COPY $BACKWEND_LOCAL_HOME/build.gradle $BACKWEND_LOCAL_HOME/settings.gradle $BACK_HOME/gradlew $BACKEND_APP_HOME
 
-COPY $BACK_HOME/gradle $APP_HOME/gradle
+COPY $BACKWEND_LOCAL_HOME/gradle $BACKEND_APP_HOME/gradle
 
 RUN chmod +x gradlew
 
 RUN ./gradlew build || return 0
 
-COPY $BACK_HOME/src $APP_HOME/src
+COPY $BACKWEND_LOCAL_HOME/src $BACKEND_APP_HOME/src
 
 RUN ./gradlew clean build
 
 FROM openjdk:17-ea-jdk-buster
 
-ENV APP_HOME=/apps
+ENV BACKEND_APP_HOME=/apps
 ARG ARTIFACT_NAME=app.jar
 ARG JAR_FILE_PATH=build/libs/backend-0.0.1-SNAPSHOT.jar
 
-WORKDIR $APP_HOME
+WORKDIR $BACKEND_APP_HOME
 
-COPY --from=build $APP_HOME/$JAR_FILE_PATH $ARTIFACT_NAME
+COPY --from=build $BACKEND_APP_HOME/$JAR_FILE_PATH $ARTIFACT_NAME
 
 EXPOSE 8080
 
