@@ -1,7 +1,7 @@
 # 빌드 단계
 FROM gradle:7.6.1-jdk17-focal AS build
 
-ENV BACKEND_LOCAL_HOME=./backend
+ENV BACKEND_LOCAL_HOME=./
 
 ENV BACKEND_APP_HOME=/apps
 
