@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/health")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost", allowedHeaders = "*")
+@CrossOrigin(origins = "http://cowabugi.com", allowedHeaders = "*")
 public class HealthContorller {
     private final HealthService service;
     @PostMapping
