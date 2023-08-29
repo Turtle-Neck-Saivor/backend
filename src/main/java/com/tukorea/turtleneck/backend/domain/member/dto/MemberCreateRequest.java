@@ -1,5 +1,6 @@
 package com.tukorea.turtleneck.backend.domain.member.dto;
 
+import com.tukorea.turtleneck.backend.domain.member.domain.Sex;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,6 @@ public class MemberCreateRequest {
     private String turtleNeckStatus;
 
     private String turtleNeckPhoto;
+    private Sex sex;
+    private Integer age;
 }
