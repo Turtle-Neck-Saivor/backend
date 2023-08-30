@@ -3,7 +3,7 @@ package com.tukorea.turtleneck.backend.domain.health.service;
 
 import com.tukorea.turtleneck.backend.domain.health.dao.HealthRepository;
 import com.tukorea.turtleneck.backend.domain.health.domain.HealthInfo;
-import com.tukorea.turtleneck.backend.domain.health.dto.*;
+import com.tukorea.turtleneck.backend.domain.health.dto.response.*;
 import com.tukorea.turtleneck.backend.domain.health.service.util.GraphTool;
 import com.tukorea.turtleneck.backend.domain.health.service.util.WeekOfDay;
 import com.tukorea.turtleneck.backend.domain.member.dao.MemberRepository;
@@ -25,7 +25,6 @@ import java.util.stream.Collectors;
 public class GraphService {
     private final HealthRepository healthRepository;
     private final MemberRepository memberRepository;
-    private final GraphTool tools;
 
     public DayGraphInfo getDayGraphInfo(LocalDate date, String nickname){
         MemberEntity memberEntity = memberRepository.findMemberEntityByNickname(nickname)
@@ -49,14 +48,14 @@ public class GraphService {
             map.put(day, new ArrayList<>());
         }
         for(HealthInfo info : infoList) {
-            switch (info.getDate().getDayOfWeek()) {
-                case MONDAY: GraphTool.addHealthInfo(map, WeekOfDay.MONDAY, info); break;
-                case TUESDAY: GraphTool.addHealthInfo(map, WeekOfDay.TUESDAY, info); break;
-                case WEDNESDAY: GraphTool.addHealthInfo(map, WeekOfDay.WEDNESDAY, info); break;
-                case THURSDAY: GraphTool.addHealthInfo(map, WeekOfDay.THURSDAY, info); break;
-                case FRIDAY: GraphTool.addHealthInfo(map, WeekOfDay.FRIDAY, info); break;
-                case SATURDAY: GraphTool.addHealthInfo(map, WeekOfDay.SATURDAY, info); break;
-                case SUNDAY: GraphTool.addHealthInfo(map, WeekOfDay.SUNDAY, info); break;
+            switch (info.getCreatedAt().getDayOfWeek()) {
+                case MONDAY -> GraphTool.addHealthInfo(map, WeekOfDay.MONDAY, info);
+                case TUESDAY -> GraphTool.addHealthInfo(map, WeekOfDay.TUESDAY, info);
+                case WEDNESDAY -> GraphTool.addHealthInfo(map, WeekOfDay.WEDNESDAY, info);
+                case THURSDAY -> GraphTool.addHealthInfo(map, WeekOfDay.THURSDAY, info);
+                case FRIDAY -> GraphTool.addHealthInfo(map, WeekOfDay.FRIDAY, info);
+                case SATURDAY -> GraphTool.addHealthInfo(map, WeekOfDay.SATURDAY, info);
+                case SUNDAY -> GraphTool.addHealthInfo(map, WeekOfDay.SUNDAY, info);
             }
         }
         return new WeekGraphInfo(map);
@@ -82,7 +81,7 @@ public class GraphService {
                 .collect(Collectors.toMap(
                         month -> month,
                         month -> Optional.of(infoList.stream()
-                                .filter(info -> info.getDate().getMonth() == month)
+                                .filter(info -> info.getCreatedAt().getMonth() == month)
                                 .collect(Collectors.toList())).orElse(new ArrayList<>())
                 ));
         Map<Month, Double> monthlySlopes = new HashMap<>();
@@ -90,7 +89,7 @@ public class GraphService {
             SimpleRegression regression = new SimpleRegression();
             for (HealthInfo info : entry.getValue()) {
                 double userData = GraphTool.calculateAverage(List.of(info));
-                regression.addData(info.getDate().getDayOfMonth(), userData);
+                regression.addData(info.getCreatedAt().getDayOfMonth(), userData);
             }
             monthlySlopes.put(entry.getKey(), regression.getSlope());
         }
