@@ -2,7 +2,7 @@ package com.tukorea.turtleneck.backend.domain.health.service;
 
 import com.tukorea.turtleneck.backend.domain.health.dao.HealthRepository;
 import com.tukorea.turtleneck.backend.domain.health.domain.HealthInfo;
-import com.tukorea.turtleneck.backend.domain.health.dto.RecordRequest;
+import com.tukorea.turtleneck.backend.domain.health.dto.request.RecordRequest;
 import com.tukorea.turtleneck.backend.domain.member.dao.MemberRepository;
 import com.tukorea.turtleneck.backend.domain.member.domain.MemberEntity;
 import com.tukorea.turtleneck.backend.domain.member.exception.NotFoundMemberException;
@@ -22,7 +22,9 @@ public class HealthService {
                 .redCnt(request.getRedCnt())
                 .yellowCnt(request.getYellowCnt())
                 .greenCnt(request.getGreenCnt())
-                .date(request.getDate())
+                .shoulderAngle(request.getShoulderAngle())
+                .headAngle(request.getHeadAngle())
+                .distanceMonitor(request.getDistanceMonitor())
                 .build();
         return healthRepository.save(info);
     }

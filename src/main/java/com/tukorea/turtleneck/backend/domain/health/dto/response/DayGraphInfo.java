@@ -1,4 +1,4 @@
-package com.tukorea.turtleneck.backend.domain.health.dto;
+package com.tukorea.turtleneck.backend.domain.health.dto.response;
 
 import lombok.*;
 

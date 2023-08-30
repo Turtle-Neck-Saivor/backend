@@ -1,4 +1,4 @@
-package com.tukorea.turtleneck.backend.domain.member.dto;
+package com.tukorea.turtleneck.backend.domain.member.dto.response;
 
 import com.tukorea.turtleneck.backend.domain.member.domain.Sex;
 import lombok.Builder;
