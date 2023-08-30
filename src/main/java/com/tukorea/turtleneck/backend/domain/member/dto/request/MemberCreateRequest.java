@@ -1,4 +1,4 @@
-package com.tukorea.turtleneck.backend.domain.member.dto;
+package com.tukorea.turtleneck.backend.domain.member.dto.request;
 
 import com.tukorea.turtleneck.backend.domain.member.domain.Sex;
 import lombok.AccessLevel;
@@ -15,13 +15,9 @@ public class MemberCreateRequest {
 
     @NotBlank
     private String emailId;
-
     private String password;
-
     private String nickname;
-
     private String turtleNeckStatus;
-
     private String turtleNeckPhoto;
     private Sex sex;
     private Integer age;

@@ -1,6 +1,8 @@
-package com.tukorea.turtleneck.backend.domain.member.dto;
+package com.tukorea.turtleneck.backend.domain.member.dto.mapper;
 
 import com.tukorea.turtleneck.backend.domain.member.domain.MemberEntity;
+import com.tukorea.turtleneck.backend.domain.member.dto.request.MemberCreateRequest;
+import com.tukorea.turtleneck.backend.domain.member.dto.response.MemberInfo;
 import org.springframework.stereotype.Component;
 
 @Component

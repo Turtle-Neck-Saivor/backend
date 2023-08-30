@@ -1,4 +1,4 @@
-package com.tukorea.turtleneck.backend.domain.member.dto;
+package com.tukorea.turtleneck.backend.domain.member.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
