@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("api/v1/members")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost", allowedHeaders = "*")
-public class memberController {
+public class MemberController {
 
     private final MemberService service;
 
