@@ -2,18 +2,11 @@ package com.tukorea.turtleneck.backend.domain.health.dto.request;
 
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RecordRequest {
-    @NotNull
-    private String nickname;
-    private Integer redCnt;
-    private Integer yellowCnt;
-    private Integer greenCnt;
-    private Long shoulderAngle;
-    private Long headAngle;
-    private Long distanceMonitor;
+    private List<RecordInfo> infos;
 }
