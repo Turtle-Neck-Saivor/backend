@@ -34,6 +34,4 @@ public class MemberController {
 
         return ResponseEntity.status((HttpStatus.CREATED)).body(service.simpleLogin(request));
     }
-
-//    @GetMapping("/photo")photo
 }
