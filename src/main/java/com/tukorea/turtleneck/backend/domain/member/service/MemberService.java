@@ -5,6 +5,7 @@ import com.tukorea.turtleneck.backend.domain.member.domain.MemberEntity;
 import com.tukorea.turtleneck.backend.domain.member.dto.request.MemberCreateRequest;
 import com.tukorea.turtleneck.backend.domain.member.dto.request.MemberLogInRequest;
 import com.tukorea.turtleneck.backend.domain.member.dto.mapper.MemberMapper;
+import com.tukorea.turtleneck.backend.domain.member.exception.NotFoundMemberException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,9 @@ public class MemberService {
         return repository.save(mapper.toEntity(request));
     }
 
-    public Boolean simpleLogin(MemberLogInRequest request) {
-        return repository.findMemberEntityByEmailId(request.getEmailId()).isPresent();
+    public String simpleLogin(MemberLogInRequest request) {
+        MemberEntity memberEntity = repository.findMemberEntityByEmailId(request.getEmailId())
+                .orElseThrow(NotFoundMemberException::new);
+        return memberEntity.getNickname();
     }
 }
