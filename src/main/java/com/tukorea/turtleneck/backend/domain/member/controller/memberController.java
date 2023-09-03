@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> simpleLogin(@Valid @RequestBody MemberLogInRequest request) {
+    public ResponseEntity<String> simpleLogin(@Valid @RequestBody MemberLogInRequest request) {
 
         return ResponseEntity.status((HttpStatus.CREATED)).body(service.simpleLogin(request));
     }

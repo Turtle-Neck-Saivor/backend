@@ -16,8 +16,8 @@ import java.util.List;
 public class HealthContorller {
     private final HealthService service;
     @PostMapping
-    public ResponseEntity<String> recordHealth(@RequestBody List<RecordInfo> request){
+    public ResponseEntity<Boolean> recordHealth(@RequestBody List<RecordInfo> request){
         service.recordInfo(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Done");
+        return ResponseEntity.status(HttpStatus.CREATED).body(Boolean.TRUE);
     }
 }
