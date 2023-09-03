@@ -25,7 +25,11 @@ public class HealthInfo extends BaseEntity {
     private Integer yellowCnt;
 
     private Integer greenCnt;
+    private Double normalizedRedCnt;
 
+    private Double normalizedYellowCnt;
+
+    private Double normalizedGreenCnt;
     private Long shoulderAngle;
 
     private Long headAngle;
@@ -36,6 +40,7 @@ public class HealthInfo extends BaseEntity {
 
     @Builder
     public HealthInfo(MemberEntity memberEntity, Integer redCnt, Integer yellowCnt, Integer greenCnt, Long shoulderAngle, Long headAngle, Long neckAngle, Long distanceMonitor){
+        int totalCnt = redCnt + yellowCnt + greenCnt;
         this.memberEntity = memberEntity;
         this.redCnt = redCnt;
         this.yellowCnt = yellowCnt;
@@ -45,5 +50,8 @@ public class HealthInfo extends BaseEntity {
         this.headAngle = headAngle;
         this.neckAngle = neckAngle;
         this.distanceMonitor = distanceMonitor;
+        this.normalizedGreenCnt = (double) greenCnt / totalCnt;
+        this.normalizedRedCnt = (double) redCnt / totalCnt;
+        this.normalizedYellowCnt = (double) yellowCnt / totalCnt;
     }
 }
