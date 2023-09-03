@@ -13,5 +13,6 @@ public class RecordInfo {
     private Integer greenCnt;
     private Long shoulderAngle;
     private Long headAngle;
+    private Long neckAngle;
     private Long distanceMonitor;
 }
