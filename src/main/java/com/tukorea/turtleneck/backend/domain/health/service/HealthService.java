@@ -27,6 +27,7 @@ public class HealthService {
                 .greenCnt(info.getGreenCnt())
                 .shoulderAngle(info.getShoulderAngle())
                 .headAngle(info.getHeadAngle())
+                .neckAngle(info.getNeckAngle())
                 .distanceMonitor(info.getDistanceMonitor())
                 .build();
         return healthRepository.save(singleInfo);
