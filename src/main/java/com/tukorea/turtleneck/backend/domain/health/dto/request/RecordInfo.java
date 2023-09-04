@@ -8,9 +8,9 @@ import javax.validation.constraints.NotNull;
 public class RecordInfo {
     @NotNull
     private String nickname;
-    private Integer redCnt;
-    private Integer yellowCnt;
-    private Integer greenCnt;
+    private int redCnt;
+    private int yellowCnt;
+    private int greenCnt;
     private Long shoulderAngle;
     private Long headAngle;
     private Long neckAngle;
