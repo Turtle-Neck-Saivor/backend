@@ -19,7 +19,7 @@ public interface HealthRepository extends JpaRepository<HealthInfo, Long> {
     );
 
     @Query("SELECT info FROM HealthInfo info WHERE info.memberEntity = :memberEntity " +
-            "AND DAYOFWEEK(info.createdAt) >= DAYOFWEEK(:date) " +
+            "AND DAYOFWEEK(info.createdAt) >= DAYOFWEEK(:startOfWeek) " +
             "AND DAYOFWEEK(info.createdAt) <= DAYOFWEEK(:endOfWeek) " +
             "AND info.isActive = true")
     List<HealthInfo> findByWeek(
