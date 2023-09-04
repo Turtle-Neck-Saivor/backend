@@ -5,8 +5,6 @@ import com.tukorea.turtleneck.backend.global.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
-//import javax.validation.constraints.NotBlank;
-//import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "member")
@@ -35,16 +33,23 @@ public class MemberEntity extends BaseEntity {
     @Column(name = "turtleneck_photo")
     private String turtleNeckPhoto;
 
+    @Column(name = "sex")
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+
+    @Column(name = "age")
+    private Integer age;
+
     @Builder
-    public MemberEntity(String emailId, String password, String nickname, String turtleNeckStatus, String turtleNeckPhoto) {
+    public MemberEntity(String emailId, String password, String nickname, String turtleNeckStatus, String turtleNeckPhoto, Sex sex, Integer age) {
         this.emailId = emailId;
         this.password = password;
         this.nickname = nickname;
         this.turtleNeckStatus = turtleNeckStatus;
         this.turtleNeckPhoto = turtleNeckPhoto;
         this.isActive = true;
+        this.sex = sex;
+        this.age = age;
     }
 
-    public void updateStatus(MemberStatus memberStatus) { this.turtleNeckStatus = turtleNeckStatus; }
-    public void updatePhoto(MemberPhoto memberPhoto) { this.turtleNeckPhoto = turtleNeckPhoto; }
 }

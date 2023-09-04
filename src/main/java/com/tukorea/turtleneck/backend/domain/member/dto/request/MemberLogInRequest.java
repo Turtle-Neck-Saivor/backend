@@ -1,4 +1,4 @@
-package com.tukorea.turtleneck.backend.domain.member.dto;
+package com.tukorea.turtleneck.backend.domain.member.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,16 +10,9 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class MemberCreateRequest {
-
+public class MemberLogInRequest {
     @NotBlank
     private String emailId;
-
+    @NotBlank
     private String password;
-
-    private String nickname;
-
-    private String turtleNeckStatus;
-
-    private String turtleNeckPhoto;
 }

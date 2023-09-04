@@ -1,7 +1,6 @@
-package com.tukorea.turtleneck.backend.domain.health.dto;
+package com.tukorea.turtleneck.backend.domain.health.dto.response;
 
 import com.tukorea.turtleneck.backend.domain.health.service.util.GraphTool;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.Month;

@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface HealthRepository extends JpaRepository<HealthInfo, Long> {
     @Query("SELECT info FROM HealthInfo info WHERE info.memberEntity = :memberEntity " +
-            "AND info.date = :date " +
+            "AND DAYOFWEEK(info.createdAt) = :date " +
             "AND info.isActive = true")
     List<HealthInfo> findByDay(
             @Param("memberEntity") MemberEntity memberEntity,
@@ -19,8 +19,8 @@ public interface HealthRepository extends JpaRepository<HealthInfo, Long> {
     );
 
     @Query("SELECT info FROM HealthInfo info WHERE info.memberEntity = :memberEntity " +
-            "AND info.date >= :startOfWeek " +
-            "AND info.date <= :endOfWeek " +
+            "AND DAYOFWEEK(info.createdAt) >= :startOfWeek " +
+            "AND DAYOFWEEK(info.createdAt) <= :endOfWeek " +
             "AND info.isActive = true")
     List<HealthInfo> findByWeek(
             @Param("memberEntity") MemberEntity memberEntity,
@@ -29,7 +29,7 @@ public interface HealthRepository extends JpaRepository<HealthInfo, Long> {
     );
 
     @Query("SELECT info FROM HealthInfo info WHERE info.memberEntity = :member " +
-            "AND YEAR(info.date) = :year " +
+            "AND YEAR(info.createdAt) = :year " +
             "AND info.isActive = true")
     List<HealthInfo> findByMemberEntityAndYear(@Param("member") MemberEntity member, @Param("year") int year);
 }

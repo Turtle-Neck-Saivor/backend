@@ -1,10 +1,10 @@
 package com.tukorea.turtleneck.backend.domain.health.controller;
 
 
-import com.tukorea.turtleneck.backend.domain.health.dto.DayGraphInfo;
-import com.tukorea.turtleneck.backend.domain.health.dto.MonthGraphInfo;
-import com.tukorea.turtleneck.backend.domain.health.dto.WeekGraphInfo;
-import com.tukorea.turtleneck.backend.domain.health.dto.YearGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.response.DayGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.response.MonthGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.response.WeekGraphInfo;
+import com.tukorea.turtleneck.backend.domain.health.dto.response.YearGraphInfo;
 import com.tukorea.turtleneck.backend.domain.health.service.GraphService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("api/v1/health/graphs")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://cowabugi.com", allowedHeaders = "*")
+@CrossOrigin(origins = "http://cowabugi.com", allowedHeaders = "*")
 public class GraphController {
 
     private final GraphService graphService;
