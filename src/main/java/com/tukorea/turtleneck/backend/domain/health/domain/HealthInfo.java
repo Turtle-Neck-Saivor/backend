@@ -39,7 +39,7 @@ public class HealthInfo extends BaseEntity {
     private double distanceMonitor;
 
     @Builder
-    public HealthInfo(MemberEntity memberEntity, Integer redCnt, Integer yellowCnt, Integer greenCnt, Long shoulderAngle, Long headAngle, Long neckAngle, Long distanceMonitor){
+    public HealthInfo(MemberEntity memberEntity, int redCnt, int yellowCnt, int greenCnt, double shoulderAngle, double headAngle, double neckAngle, double distanceMonitor){
         int totalCnt = redCnt + yellowCnt + greenCnt;
         this.memberEntity = memberEntity;
         this.redCnt = redCnt;
