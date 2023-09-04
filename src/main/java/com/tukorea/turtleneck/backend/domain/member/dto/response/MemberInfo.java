@@ -17,5 +17,5 @@ public class MemberInfo {
 
     private String turtleNeckPhoto;
     private Sex sex;
-    private Integer age;
+    private int age;
 }
