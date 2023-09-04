@@ -1,10 +1,12 @@
 package com.tukorea.turtleneck.backend.domain.health.dto.request;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RecordInfo {
     @NotNull
     private String nickname;
