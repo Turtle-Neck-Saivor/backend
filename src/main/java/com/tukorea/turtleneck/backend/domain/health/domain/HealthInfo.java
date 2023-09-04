@@ -20,23 +20,23 @@ public class HealthInfo extends BaseEntity {
     @ManyToOne
     private MemberEntity memberEntity;
 
-    private Integer redCnt;
+    private int redCnt;
 
-    private Integer yellowCnt;
+    private int yellowCnt;
 
-    private Integer greenCnt;
-    private Double normalizedRedCnt;
+    private int greenCnt;
+    private double normalizedRedCnt;
 
-    private Double normalizedYellowCnt;
+    private double normalizedYellowCnt;
 
-    private Double normalizedGreenCnt;
-    private Long shoulderAngle;
+    private double normalizedGreenCnt;
+    private double shoulderAngle;
 
-    private Long headAngle;
+    private double headAngle;
 
-    private Long neckAngle;
+    private double neckAngle;
 
-    private Long distanceMonitor;
+    private double distanceMonitor;
 
     @Builder
     public HealthInfo(MemberEntity memberEntity, Integer redCnt, Integer yellowCnt, Integer greenCnt, Long shoulderAngle, Long headAngle, Long neckAngle, Long distanceMonitor){
