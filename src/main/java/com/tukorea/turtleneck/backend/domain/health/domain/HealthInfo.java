@@ -50,8 +50,15 @@ public class HealthInfo extends BaseEntity {
         this.headAngle = headAngle;
         this.neckAngle = neckAngle;
         this.distanceMonitor = distanceMonitor;
-        this.normalizedGreenCnt = (double) greenCnt / totalCnt;
-        this.normalizedRedCnt = (double) redCnt / totalCnt;
-        this.normalizedYellowCnt = (double) yellowCnt / totalCnt;
+        if(totalCnt != 0){
+            this.normalizedGreenCnt = (double) greenCnt / totalCnt;
+            this.normalizedRedCnt = (double) redCnt / totalCnt;
+            this.normalizedYellowCnt = (double) yellowCnt / totalCnt;
+        } else {
+            this.normalizedGreenCnt = 0;
+            this.normalizedRedCnt = 0;
+            this.normalizedYellowCnt = 0;
+        }
+
     }
 }
