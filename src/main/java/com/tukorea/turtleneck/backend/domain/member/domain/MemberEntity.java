@@ -16,7 +16,7 @@ public class MemberEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
-    private Long memberid;
+    private Long memberId;
 
     @Column(name = "email", unique = true)
     private String emailId;
