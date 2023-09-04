@@ -11,8 +11,8 @@ public class RecordInfo {
     private int redCnt;
     private int yellowCnt;
     private int greenCnt;
-    private Long shoulderAngle;
-    private Long headAngle;
-    private Long neckAngle;
-    private Long distanceMonitor;
+    private double shoulderAngle;
+    private double headAngle;
+    private double neckAngle;
+    private double distanceMonitor;
 }
