@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/health")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://cowabugi.com", allowedHeaders = "*")
+@CrossOrigin(origins = "https://cowabugi.com", allowedHeaders = "*")
 public class HealthContorller {
     private final HealthService service;
     @PostMapping
